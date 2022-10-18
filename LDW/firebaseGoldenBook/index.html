@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Firebase Golden Book</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <main class="md:container md:mx-auto px-4">
+      <h1 class="text-3xl font-bold">Firebase Golden Book</h1>
+
+      <section class="mt-20 textarea-section">
+        <div>
+          <label
+            for="user_name"
+            class="block mb-2 text-sm font-medium dark:text-gray-400"
+            >Your name</label
+          >
+          <input
+            type="text"
+            id="user_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="John"
+            required
+          />
+        </div>
+
+        <div class="mt-6">
+          <label
+            for="body"
+            class="block mb-2 text-sm font-medium dark:text-gray-400"
+            >Your message</label
+          >
+          <textarea
+            id="body"
+            rows="4"
+            class="block p-2.5 w-full text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Your message..."
+          ></textarea>
+        </div>
+
+        <button
+          type="button"
+          id="addComment"
+          class="mt-6 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+        >
+          Publish post
+        </button>
+      </section>
+
+      <section class="mt-20 results-list">
+        <div><ul id="commentContainer" class="w-100"></ul></div>
+      </section>
+    </main>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDZXd5dq9bV1J9nh8vdP5WPyGVpWKYLA9o",
+        authDomain: "to-do-live-afaec.firebaseapp.com",
+        projectId: "to-do-live-afaec",
+        storageBucket: "to-do-live-afaec.appspot.com",
+        messagingSenderId: "756535078469",
+        appId: "1:756535078469:web:f74f9b1c24a2555dbe3d2c",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // GET AND BUILD COMMENTS LIST
+      var commentContainer = document.getElementById("commentContainer");
+
+      const writeHtmlList = function(item) {
+        commentContainer.innerHTML += `<li id="commentCardCloner" class="w-100 mt-6">
+          <a
+            href="#"
+            class="block p-6 w-100 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+          >
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${item.user_name}</h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400">${item.body}</p>
+          </a>
+        </li>`;
+      } 
+
+      const querySnapshot = await getDocs(collection(db, "comments"));
+      querySnapshot.forEach((doc) => {
+        const item = Object.assign({ id: doc.id }, doc.data());
+        writeHtmlList(item)
+      });
+
+      
+
+      var submitData = document.getElementById("addComment");
+      submitData.addEventListener("click", async (e) => {
+        var userName = document.getElementById("user_name").value;
+        var body = document.getElementById("body").value;
+
+        try {
+          const payload = Object.assign({}, { user_name: userName, body: body })
+          const docRef = await addDoc(collection(db, "comments"), payload);
+          document.getElementById("user_name").value = ''
+          document.getElementById("body").value = ''
+          writeHtmlList(payload)
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+      });
+    </script>
+  </body>
+</html>
