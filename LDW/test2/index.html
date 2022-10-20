@@ -22,24 +22,26 @@
       </div>
 
     </section>
-    <section class="list"></section>
+    <section class="list">
+      <ul id="commentsList"></ul>
+    </section>
   </main>
 
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyAFmaKGGOBiHQAk6mkIj3eBQ3-z0DAw-yA",
-      authDomain: "golden-book-super.firebaseapp.com",
-      projectId: "golden-book-super",
-      storageBucket: "golden-book-super.appspot.com",
-      messagingSenderId: "511382204034",
-      appId: "1:511382204034:web:3d9b4271bddc67af920e9b"
+      apiKey: "your-config",
+      authDomain: "your-config",
+      projectId: "your-config",
+      storageBucket: "your-config",
+      messagingSenderId: "your-config",
+      appId: "your-config",
     };
 
     // Initialize Firebase
@@ -48,9 +50,46 @@
     const db = getFirestore(app);
 
     const submitBtn = document.getElementById('submitButton')
-    submitBtn.addEventListener('click', (e) => {
-      
+    submitBtn.addEventListener('click', async (e) => {
+      try {
+        const payload = {
+          user_name: document.getElementById('user_name').value,
+          body: document.getElementById('body').value
+        }
+        const docRef = await addDoc(collection(db, "comments"), payload);
+        console.log("Document written with ID: ", docRef.id);
+        const newDoc = Object.assign({ id: docRef.id }, payload);
+
+        document.getElementById('user_name').value = ''
+        document.getElementById('body').value = ''
+
+        writeElement(newDoc)
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
     })
+
+    async function getComments() {
+      const querySnapshot = await getDocs(collection(db, "comments"));
+      querySnapshot.forEach((doc) => {
+        const item = Object.assign({ id: doc.id }, doc.data())
+        writeElement(item)
+      });
+    }
+
+
+    // mbartier@formateur.efp.be
+
+    function writeElement(item) {
+      const commentsList = document.getElementById('commentsList')
+      console.log({ item })
+      commentsList.innerHTML += `<li>
+        <span>${item.user_name}</span>
+        <p>${item.body}</p>
+      </li>`
+    }
+
+    getComments()
   </script>
 </body>
 </html>
