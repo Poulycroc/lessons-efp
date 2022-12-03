@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="todo-list-container">
+      <h3>Ma super todolist</h3>
+      <div class="add-todo-container">
+        <input type="text" id="createTodoInput" />
+        <button type="button" id="createTodoBtn">Ajouter un todo</button>
+      </div>
+
+      <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+      const createTodoBtn = document.getElementById('createTodoBtn')
+      const createTodoInput = document.getElementById('createTodoInput')
+      const todoListContainer = document.getElementById('todo-list')
+      
+      let todoList = [{
+        label: 'Je dois faire mes courses',
+        done: false,
+      }]
+      createTodoBtn.addEventListener('click', addTodo);
+
+      function buildTodosList() {
+        todoList.forEach((todo, index) => {
+          console.log({ todo, index })
+          writeTodo(todo, index)
+        })
+      }
+
+
+      function deleteTodo(todoIndex) {
+        console.log({ todoList, todoIndex })
+        todoList.splice(todoIndex, 1);
+        todoListContainer.innerHTML = ''
+        buildTodosList()
+      }
+
+      function editTodo(todoIndex) {
+        console.log({ editTodo: todoIndex })
+      }
+
+      function addTodo() {
+        const label = createTodoInput.value
+        const newTodo = { label, done: false }
+        writeTodo(newTodo, todoList.length)
+        todoList.push(newTodo)
+        createTodoInput.value = ''
+      }
+
+      const writeTodo = (todo, index) => {
+        const el = `<li class="todo-item ${todo.done ? 'todo-list--done' : ''}">
+          <span>${todo.label}</span>
+          <button type="button" onclick="deleteTodo(${index})">supprimer</button>
+          <button type="button" onclick="editTodo(${index})">editer</button>
+        </li>`
+        todoListContainer.innerHTML += el
+      }
+
+      buildTodosList()
+    </script>
+  </body>
+</html>
