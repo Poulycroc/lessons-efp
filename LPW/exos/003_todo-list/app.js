@@ -75,7 +75,7 @@ function handleSaveEdition(todoItemRef, todoInputRef, todoId) {
   const todoInput = document.getElementById(todoInputRef)
   const focusItem = document.getElementById(todoItemRef)
 
-  const index = todosList.findIndex(todo => todo.id === todoId);
+  const index = todosList.findIndex((todo) => todo.id === todoId);
   todosList[index].label = todoInput.value
   
   saveTodoListToLocalStorage();
@@ -123,9 +123,9 @@ const todoItemTemplate = (todo) => {
   const todoItemRef = `todo-item__${todo.id}`
 
   return `<div 
-      class="todo-item ${todo.isDone ? 'item-is-done' : ''}"
-      id="${todoItemRef}"
-    >
+    class="todo-item ${todo.isDone ? 'item-is-done' : ''}"
+    id="${todoItemRef}"
+  >
 		<input 
 		  class="hidden" 
 		  type="checkbox" 
@@ -180,17 +180,3 @@ const noTodosAlert = `<div class="flex items-center bg-blue-500 text-white text-
   <p>There's no todos for now.</p>
 </div>`
 
-
-/*
-window.onload = function(){
-  var request = new XMLHttpRequest();
-
-  request.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        console.log({ responseText: this.responseText });
-      }
-  };
-
-  request.open('GET', 'http://localhost:9999/server.php');
-  request.send();
-}*/
