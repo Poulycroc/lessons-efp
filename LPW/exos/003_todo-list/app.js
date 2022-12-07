@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
   writeTodosList();
 });
 
+// coucou
 
 /**
  * Here it's my function for get new item from the text input
