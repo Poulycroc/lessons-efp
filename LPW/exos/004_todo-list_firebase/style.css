@@ -1,0 +1,45 @@
+input[type=checkbox]:checked+label span:first-of-type {
+	background-color: #10B981;
+	border-color: #10B981;
+	color: #fff;
+}
+
+input[type=checkbox]:checked+label span:nth-of-type(2) {
+	text-decoration: line-through;
+	color: #9CA3AF;
+}
+
+#todo-item--html-template {
+	display: none;
+}
+
+.todo-item.is-edit-mode span.todo-item--label {
+	display: none;
+}
+
+.todo-item .text-item--edit {
+	display: none;
+}
+.todo-item.is-edit-mode .text-item--edit {
+	display: flex;
+}
+.todo-item.is-edit-mode .delete-btn-icon,
+.todo-item.is-edit-mode .edit-btn-icon {
+	display: none;
+}
+
+.marg-l-auto {
+	margin-left: auto;
+}
+.marg-l-10 {
+	margin-left: 10px;
+}
+
+.actions-btn {
+	opacity: 0;
+	transition: opacity 200ms ease-in-out;
+}
+
+.todo-item:hover label .actions-btn {
+	opacity: 1;
+}
