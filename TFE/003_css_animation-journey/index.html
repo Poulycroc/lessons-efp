@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Animate Journey - CSS/JS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <main>
+    <div class="div-box">
+      <div class="head">
+        <button type="button" id="sidebarBtnToggle" class="burger">
+          <i></i>
+          <i></i>
+          <i></i>
+        </button>
+        <button type="button" id="modalBtn">Modal</button>
+      </div>
+      <div class="content">
+        <ul>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="sidebar">
+    <div class="content">
+      <h1 class="rainbow-text">Side Bar</h1>
+      <div class="box-sprite"></div>
+    </div>
+  </div>
+
+  <div id="modal-element" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-header--title">My super Modal</span>
+        <button type="button" class="button close" id="clode-modal-btn">
+          <i class="fa fa-close"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="my-super-content">
+          <h3>Such Modal, Much Animate!</h3>
+          <p>Nothing groundbreaking, but I hope you enjoyed <br /> the physics for the open/close animation =).</p>
+          <p class="ps">**I know the SASS is a bit messy, I did this on the fly and for fun <br /> and w.e. I DO WHAT I
+            WANT!!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+
+</html>
