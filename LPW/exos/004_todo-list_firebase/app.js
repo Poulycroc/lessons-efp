@@ -89,7 +89,7 @@ function handleDeleteTodo(todoId) {
   const deleteBtn = document.getElementById(`delete__btn-todo__${todoId}`)
   deleteBtn.addEventListener('click', async () => {
     await deleteDoc(doc(db, 'todos', todoId));
-    document.getElementById(`todo__${todoId}`).style.display = "none";
+    document.getElementById(`todo-item__${todoId}`).style.display = "none";
   })
 }
 
@@ -119,9 +119,12 @@ async function handleSaveEdition(todoId) {
  * this function gonna write the todolist in html
  */
 const writeTodosList = (callback) => {
-  todosListContainer.innerHTML = todosList.length === 0
+  const htmlContent = todosList.length === 0
     ? noTodosAlert
     : constructTodoListHTML()
+
+  console.log({ htmlContent })
+  todosListContainer.innerHTML = htmlContent
 
   callback(true)
 }
