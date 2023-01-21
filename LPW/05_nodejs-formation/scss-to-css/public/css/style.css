@@ -1,0 +1,68 @@
+.full-w, ul.container-list, ul.container-list li {
+  width: 100%; }
+
+.header {
+  background-color: #840455;
+  width: 100%;
+  height: 400px; }
+
+.btn {
+  width: 30px;
+  height: 30px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 20px; }
+
+ul.container-list {
+  margin-top: 20px; }
+  ul.container-list li {
+    display: inline-block; }
+    ul.container-list li:not(:last-child) {
+      margin-bottom: 5px; }
+    ul.container-list li a {
+      color: red; }
+      ul.container-list li a:hover {
+        color: green; }
+
+.container-a,
+.container-b {
+  width: 100%; }
+  .container-a > a,
+  .container-b > a {
+    background: red; }
+    .container-a > a.container-a, .container-a > a .container-b,
+    .container-b > a.container-a,
+    .container-b > a .container-b {
+      height: 1px; }
+
+.animate:nth-child(0) {
+  animation-delay: 0ms; }
+
+.animate:nth-child(1) {
+  animation-delay: 100ms; }
+
+.animate:nth-child(2) {
+  animation-delay: 200ms; }
+
+.animate:nth-child(3) {
+  animation-delay: 300ms; }
+
+.animate:nth-child(4) {
+  animation-delay: 400ms; }
+
+.animate:nth-child(5) {
+  animation-delay: 500ms; }
+
+.animate:nth-child(6) {
+  animation-delay: 600ms; }
+
+.animate:nth-child(7) {
+  animation-delay: 700ms; }
+
+.animate:nth-child(8) {
+  animation-delay: 800ms; }
+
+.animate:nth-child(9) {
+  animation-delay: 900ms; }

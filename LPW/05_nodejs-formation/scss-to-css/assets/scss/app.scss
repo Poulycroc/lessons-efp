@@ -1,0 +1,68 @@
+@import './mixins';
+
+@function double($number) {
+  @return $number * 2;
+}
+
+.full-w {
+  width: 100%;
+}
+
+$primary: #bada55;
+$secondary: #840455;
+
+.header {
+  background-color: $secondary;
+  @include size(100%, 400px);
+}
+
+.btn {
+  @include size(30px);
+  @include border-radius(5px);
+  font-size: double(10px);
+}
+
+ul.container-list {
+  margin-top: 20px;
+
+  &, li {
+    @extend .full-w;
+  }
+
+  li {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+
+    a {
+      color: red;
+      &:hover {
+        color: green;
+      }
+    }
+  }
+}
+
+.container-a,
+.container-b {
+  $el: &;
+  & {
+    width: 100%;
+
+    &>a {
+      background: red;
+
+      &#{$el} {
+        height: 1px;
+      }
+    }
+  }
+}
+
+@for $i from 0 to 10 {
+  .animate:nth-child(#{$i}) {
+    animation-delay: #{$i * 100}ms;
+  }
+}
