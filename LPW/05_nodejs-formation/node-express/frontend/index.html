@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+    class TaskItem extends React.Component {
+      constructor(props) {
+        super(props)
+
+        this.state = {
+          detail: ''
+        }
+      }
+
+      componentDidMount() {
+        fetch(`http://localhost:9999/tasks/${this.props.taskId}`)
+          .then((response) => response.json())
+          .then((data) => this.setState({ detail: data.detail }))
+      }
+
+      render() {
+        return React.createElement(
+          'li', 
+          null, 
+          this.props.name + ' -> ' + this.state.detail
+        )
+      }
+    }
+
+    class TasksList extends React.Component {
+      constructor() {
+        super()
+
+        this.state = {
+          tasksList: []
+        }
+      }
+
+      componentDidMount() {
+        fetch('http://localhost:9999/tasks')
+          .then((response) => response.json())
+          .then((data) => this.setState({ tasksList: data.tasks }))
+      }
+
+      render() {
+        return React.createElement(
+          "ul",
+          { className: 'ul-container', Style: 'margin:40px' },
+          this.state.tasksList.map((task, i) => {
+            return React.createElement(
+              TaskItem,
+              { key: i, taskId: task.id, name: task.name }
+            )
+          })
+        )
+      }
+    }
+
+    const root = React.createElement(TasksList);
+    ReactDOM.render(root, document.getElementById('root'));
+  </script>
+</body>
+</html>
