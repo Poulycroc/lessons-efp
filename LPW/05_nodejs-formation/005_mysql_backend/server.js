@@ -2,6 +2,7 @@
 const express = require("express");
 // importez le paquet mysql2 pour gérer les bases de données MySQL
 const mysql = require("mysql2");
+const cors = require("cors");
 
 // définissez le port pour votre serveur
 const PORT = 9999;
@@ -9,6 +10,7 @@ const PORT = 9999;
 const app = express();
 // utilisez express.json pour traiter les données envoyées par l'utilisateur
 app.use(express.json());
+app.use(cors());
 
 // créez une connexion à votre base de données
 const connection = mysql.createConnection({
