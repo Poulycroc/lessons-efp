@@ -1,0 +1,16 @@
+{
+  "name": "005_mysql_backend",
+  "version": "1.0.0",
+  "description": "Travailler avec des applications REST API est intéressant car cela permet une communication simple et efficace entre différents systèmes. Les API REST utilisent des conventions standardisées pour échanger des données, ce qui les rend faciles à utiliser et à comprendre pour les développeurs. De plus, les API REST peuvent être utilisées avec de nombreux langages de programmation différents, ce qui les rend flexibles et réutilisables pour de nombreux projets.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.1.0"
+  }
+}
