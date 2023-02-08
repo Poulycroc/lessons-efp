@@ -20,10 +20,10 @@ npm init
 qui va donc nous générer notre `package.js`
 <br>
 
-2. on oublie pas d'ajouter un fichier `.gitignore` dans le quel on va ajouter: 
+2. on n'oublie pas d'ajouter un fichier `.gitignore` dans le quel on va ajouter: 
 ```bash
 node_modules
-package-lock.js
+package-lock.json
 ```
 <br>
 
@@ -34,17 +34,17 @@ npm install express mysql2 --save
 <details>
 <summary>Mmmh ? pas tout compris ?</summary>
 
-"`npm install express mysql2 --save`" est une commande que vous tapez dans votre terminal pour installer deux paquets (ou bibliothèques) pour votre application Node.js.
+- "`npm install express mysql2 --save`" est une commande que vous tapez dans votre terminal pour installer deux paquets (ou bibliothèques) pour votre application Node.js.
 
-"`npm`" est le gestionnaire de paquets pour Node.js, qui vous permet d'installer et de gérer les dépendances pour votre application.
+- "`npm`" est le gestionnaire de paquets pour Node.js, qui vous permet d'installer et de gérer les dépendances pour votre application.
 
-"`install`" indique à npm de télécharger et d'installer les paquets express et mysql2.
+- "`install`" indique à npm de télécharger et d'installer les paquets express et mysql2.
 
-"`express`" est un framework web populaire pour Node.js qui facilite la création d'applications web.
+- "`express`" est un framework web populaire pour Node.js qui facilite la création d'applications web.
 
-"`mysql2`" est un plugin pour Node.js qui vous permet de travailler avec des bases de données MySQL.
+- "`mysql2`" est un plugin pour Node.js qui vous permet de travailler avec des bases de données MySQL.
 
-"`--save`" indique à npm d'enregistrer ces paquets comme dépendances de votre application dans le fichier "`package.json`". Cela signifie que ces paquets seront automatiquement installés pour toute personne qui clonerait votre projet.
+- "`--save`" indique à npm d'enregistrer ces paquets comme dépendances de votre application dans le fichier "`package.json`". Cela signifie que ces paquets seront automatiquement installés pour toute personne qui clonerait votre projet.
 </details>
 <br>
 
