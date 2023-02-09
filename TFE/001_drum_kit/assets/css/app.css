@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #333;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+}
+
+.drumkit-container {
+  text-align: center;
+  
+}
+
+h1 {
+  color: #fff;
+}
+
+#drum-holder {
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+#drum-holder .key {
+  width: 160px;
+  height: 160px;
+  margin: 20px;
+  cursor: pointer;
+  float: left;
+  transition: all .07s;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: background-color 100ms ease-in-out;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#drum-holder .key span.letter {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#drum-holder .key:hover {
+  background-color: rgba(255,255,255,0.8);
+}
+
+#drum-holder .key.playing {
+  background-color: #fff;
+}
