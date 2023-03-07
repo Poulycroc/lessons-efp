@@ -370,10 +370,23 @@ export default RedditFeed;
 ```
 
 
-Le composant Feed utilise la méthode useState pour stocker les données du feed de Reddit dans un tableau feedData. La méthode useEffect est utilisée pour effectuer une requête GET sur l'API Reddit et mettre à jour les données du feed.
+Le composant Feed utilise la méthode `useState` pour stocker les données du feed de Reddit dans un tableau feedData. La méthode `useEffect` est utilisée pour effectuer une requête GET sur l'API Reddit et mettre à jour les données du feed.
 
-useEffect est une méthode de cycle de vie qui est appelée après chaque rendu de votre composant. Elle prend deux arguments : une fonction de rappel qui effectue une action, et un tableau de dépendances qui permet de contrôler quand la fonction de rappel doit être appelée. Si le tableau de dépendances est vide, la fonction de rappel ne sera appelée qu'une seule fois lors du montage du composant.
+`useEffect` est une méthode de cycle de vie qui est appelée après chaque rendu de votre composant. Elle prend deux arguments : une fonction de rappel qui effectue une action, et un tableau de dépendances qui permet de contrôler quand la fonction de rappel doit être appelée. Si le tableau de dépendances est vide, la fonction de rappel ne sera appelée qu'une seule fois lors du montage du composant.
 
-Dans cet exemple, nous avons utilisé useEffect avec un tableau de dépendances vide pour effectuer la requête GET sur l'API Reddit et mettre à jour les données du feed une seule fois lors du montage du composant. Nous avons également utilisé la méthode axios.get pour effectuer la requête GET, puis la méthode setFeedData pour mettre à jour les données du feed avec les données récupérées de l'API Reddit.
+<details><summary>Différence avec "componentDidMount" ?</summary>
+
+La méthode `useState` et `componentDidMount` sont deux éléments différents en React.
+
+`useState` est une méthode de hook qui permet de définir et de mettre à jour l'état local d'un composant. Lorsque vous utilisez `useState`, React se charge de conserver et de mettre à jour l'état local de manière performante et fiable.
+
+`componentDidMount`, en revanche, est une méthode de cycle de vie de React qui est appelée immédiatement après que le composant est monté. Elle permet d'effectuer des actions lors du premier rendu du composant, telles que la récupération de données à partir d'une API ou la configuration d'un intervalle de temps.
+
+En d'autres termes, `useState` est utilisé pour définir et mettre à jour l'état local d'un composant de manière performante, tandis que `componentDidMount` est utilisé pour effectuer des actions lors du premier rendu du composant.
+
+Il est important de noter que les méthodes de cycle de vie de React, telles que `componentDidMount`, sont utilisées dans les composants de classe, tandis que les hooks, tels que `useState`, sont utilisés dans les composants fonctionnels.
+</details><br>
+
+Dans cet exemple, nous avons utilisé `useEffect` avec un tableau de dépendances vide pour effectuer la requête *GET* sur l'*API* Reddit et mettre à jour les données du feed une seule fois lors du montage du composant. Nous avons également utilisé la méthode axios.get pour effectuer la requête *GET*, puis la méthode setFeedData pour mettre à jour les données du feed avec les données récupérées de l'*API* Reddit.
 
 Enfin, nous avons affiché les données du feed dans une liste à l'aide de la méthode map, en créant un lien pour chaque élément du feed qui ouvrira la page Reddit correspondante dans un nouvel onglet.
