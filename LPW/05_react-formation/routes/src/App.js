@@ -17,9 +17,10 @@ function App() {
         </header>
         <main>
           <Routes>
-             <Route exact path='/' element={<HomePage />}></Route>
-             <Route exact path='/profile' element={<ProfilePage />}></Route>
-             <Route exact path='/feed' element={<FeedPage />}></Route>
+            <Route exact path='/' element={<HomePage />} />
+            <Route exact path='/profile' element={<ProfilePage />} />
+            <Route exact path='/feed' element={<FeedPage />} />
+            <Route path="/feed/:category" element={<FeedPage />} />
           </Routes>
         </main>
       </div>
