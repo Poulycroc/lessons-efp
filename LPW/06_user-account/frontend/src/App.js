@@ -21,11 +21,11 @@ function App() {
         <main>
           <Routes>
             <Route exact path='/' element={<HomePage />} />
-            <Route exact path='/profile' element={<PrivateRoute />}>
+            <Route element={<PrivateRoute />}>
               <Route exact path='/profile' element={<ProfilePage />}/>
             </Route>
 
-            <Route  path='/login' element={<GuestRoute />}>
+            <Route element={<GuestRoute />}>
               <Route  path='/login' element={<LoginPage />} />
             </Route>
             <Route exact path='/feed' element={<FeedPage />} />
