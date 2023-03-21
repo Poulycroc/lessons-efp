@@ -85,7 +85,7 @@ function ChildComponent() {
 
 ## A quel moment utiliser un useContext ?
 
-1. a partir du moment ou tu passes des props à plus de 2 enfants qui ne les utilisent pas 
-2. pour faire des composants qui comuniquent entre eux 
-3. pour des données global, "AuthProvider", "LocaleProvider" 
+1. a partir du moment ou tu passes des props à plus de 2 enfants qui ne les utilisent pas
+2. pour faire des composants qui comuniquent entre eux
+3. pour des données global, "AuthProvider", "LocaleProvider"
 4. garder ta logique a un endroit, éviter d'avoir de la logique partout, en l'utilisant uniquelent des ton provider, ça va la centraliser et permettre une plus grosse intéraction
