@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from 'react';
-import axios from 'axios'
 import { useAuth } from './../contexts/AuthContext'
 import { useApi } from './../contexts/ApiContext';
 
@@ -7,14 +6,21 @@ function DashboardPage() {
   const { currentUser, getCurrentUserToken } = useAuth();
   const { api } = useApi();
   const [message, setMessage] = useState();
+  const [phpMessage, setPhpMessage] = useState();
 
   const getSecrectMessage = async () => {
-    const { data } = await api.get('secret/');
+    const { data } = await api.get('http://localhost:9999/secret/');
     setMessage(data.message)
+  }
+  
+  const getSecrectPHPMessage = async () => {
+    const { data } = await api.get('http://localhost:9898/secret');
+    setPhpMessage(data.message)
   }
 
   useEffect(() => {
     getSecrectMessage();
+    getSecrectPHPMessage();
   }, [])
 
   return(
@@ -31,6 +37,9 @@ function DashboardPage() {
       
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
         <h2>{message}</h2>
+      </div>
+      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
+        <h2>{phpMessage}</h2>
       </div>
     </header>
   )

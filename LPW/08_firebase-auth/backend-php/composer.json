@@ -1,0 +1,9 @@
+{
+    "require": {
+        "slim/slim": "^4.0",
+        "slim/psr7": "^1.6",
+        "tuupola/cors-middleware": "^1.4",
+        "google/auth": "^1.25",
+        "google/apiclient": "^2.13"
+    }
+}
