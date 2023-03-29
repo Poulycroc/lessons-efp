@@ -3,24 +3,24 @@ import { useAuth } from './../contexts/AuthContext'
 import { useApi } from './../contexts/ApiContext';
 
 function DashboardPage() {
-  const { currentUser, getCurrentUserToken } = useAuth();
+  const { currentUser } = useAuth();
   const { api } = useApi();
   const [message, setMessage] = useState();
   const [phpMessage, setPhpMessage] = useState();
 
   const getSecrectMessage = async () => {
-    const { data } = await api.get('http://localhost:9999/secret/');
+    const { data } = await api.get('secret/');
     setMessage(data.message)
   }
   
-  const getSecrectPHPMessage = async () => {
-    const { data } = await api.get('http://localhost:9898/secret');
-    setPhpMessage(data.message)
-  }
+  // const getSecrectPHPMessage = async () => {
+  //   const { data } = await api.get('http://localhost:9898/secret');
+  //   setPhpMessage(data.message)
+  // }
 
   useEffect(() => {
     getSecrectMessage();
-    getSecrectPHPMessage();
+    // getSecrectPHPMessage();
   }, [])
 
   return(

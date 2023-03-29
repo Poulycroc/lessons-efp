@@ -134,6 +134,8 @@ Cela démarre un serveur local sur le port 9898. Vous pouvez remplacer "9898" pa
 console.log({ currentUser })
 ```
 
+> **Note:** les tests sont fait avec "http://localhost:9999" et non "http://localhost:9898" 
+
 <img src=".screenshots/Screenshot 2023-03-25 at 13.39.19.png" alt="currentUser log" />
 
 dans post man je peux donc tester mes 2 routes disponible '/' et 'secret/'

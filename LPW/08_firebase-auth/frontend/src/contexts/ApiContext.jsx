@@ -11,11 +11,11 @@ export function useApi() {
 export function ApiProvider({ children }) {
   const { getCurrentUserToken } = useAuth();
 
-  // const axiosConfig = {
-  //   baseURL: import.meta.env.VITE_API_URL,
-  // };
-  // const api = axios.create(axiosConfig);
-  const api = axios.create();
+  const axiosConfig = {
+    baseURL: import.meta.env.VITE_API_URL,
+  };
+  const api = axios.create(axiosConfig);
+  // const api = axios.create();
 
   api.interceptors.request.use(async (config) => {
     if (config.url !== '/users/login') {
@@ -30,6 +30,10 @@ export function ApiProvider({ children }) {
 
   const value = { api };
 
-  return (<ApiContext.Provider value={value}>{children}</ApiContext.Provider>);
+  return (
+    <ApiContext.Provider value={value}>
+      {children}
+    </ApiContext.Provider>
+  );
 }
 
