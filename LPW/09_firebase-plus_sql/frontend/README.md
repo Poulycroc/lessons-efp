@@ -1,6 +1,6 @@
 # REACT POSTS
 
-## SQL commands
+## SQL commands config
 pour les `posts`:
 ```sql
 CREATE TABLE posts (
@@ -24,3 +24,12 @@ CREATE TABLE comments (
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 ```
+## ajout des premiers posts
+
+```sql
+INSERT INTO posts (title, content, author_id, created_at, updated_at)
+VALUES 
+('First Post', 'This is my first post!', 'tonuseruid', NOW(), NOW()),
+('Second Post', 'This is my second post!', 'tonuseruid', NOW(), NOW());
+```
+
