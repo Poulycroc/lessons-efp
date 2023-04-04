@@ -9,6 +9,11 @@ function NavBar() {
       label: 'Home',
       path: '/',
       name: 'home'
+    },
+    {
+      label: 'Posts',
+      path: '/posts',
+      name: 'posts'
     }
   ]
 
