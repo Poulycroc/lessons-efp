@@ -13,7 +13,7 @@ router.post('/', verifyToken, async (req, res) => {
 
     // insert the new article into the database
     const result = await db.promise().query(
-      'INSERT INTO articles (title, content, author_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?)',
+      'INSERT INTO posts (title, content, author_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?)',
       [title, content, author_id, created_at, updated_at]
     );
     
@@ -26,11 +26,11 @@ router.post('/', verifyToken, async (req, res) => {
   }
 });
 
-// Récupérer tous les articles
+// Récupérer tous les posts
 router.get('/', async (req, res) => {
   try {
-    // retrieve all articles from the database
-    const result = await db.promise().query('SELECT * FROM articles');
+    // retrieve all posts from the database
+    const result = await db.promise().query('SELECT * FROM posts');
     res.status(200).json(result[0]);
   } catch (error) {
     console.error(error);
@@ -43,7 +43,7 @@ router.get('/:id', async (req, res) => {
   try {
     const articleId = req.params.id;
     // retrieve the article with the specified ID from the database
-    const result = await db.promise().query('SELECT * FROM articles WHERE id = ?', [articleId]);
+    const result = await db.promise().query('SELECT * FROM posts WHERE id = ?', [articleId]);
     if (result[0].length === 0) {
       res.status(404).json({ message: 'Article not found' });
     } else {
@@ -55,7 +55,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Récupérer tous les articles d'un auteur
+// Récupérer tous les posts d'un auteur
 router.get('/author/:id', async (req, res) => {
   const authorId = req.params.id;
   try {
@@ -79,7 +79,7 @@ router.put('/:id', verifyToken, async (req, res) => {
 
     // update the article with the specified ID in the database
     const result = await db.promise().query(
-      'UPDATE articles SET title = ?, content = ?, updated_at = ? WHERE id = ?',
+      'UPDATE posts SET title = ?, content = ?, updated_at = ? WHERE id = ?',
       [title, content, updated_at, articleId]
     );
     if (result[0].affectedRows === 0) {

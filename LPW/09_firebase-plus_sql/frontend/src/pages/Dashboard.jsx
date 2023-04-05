@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
+import { Link } from 'react-router-dom'
 import { useAuth } from './../contexts/AuthContext'
 import { useApi } from './../contexts/ApiContext';
 
@@ -24,7 +25,7 @@ function DashboardPage() {
     // getSecrectPHPMessage();
   }, [])
 
-  return(
+  return <>
     <header aria-label="Page Header">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center sm:justify-between">
@@ -33,14 +34,24 @@ function DashboardPage() {
               Welcome Back, {currentUser.email}!
             </h1>
           </div>
+
+          <div className="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
+            <Link
+              className="block rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring"
+            >
+              Create Post
+            </Link>
+          </div>
         </div>
-      </div>
-      
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
-        {postsList.map((post, i) => (<Post key={i} content={post.content} date={post.created_at} />))}
-      </div>
+      </div> 
     </header>
-  )
+
+    <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
+      <div className='flex-col flex gap-4'>
+        {postsList.map((post, i) => (<Post key={i} post={post} />))}
+      </div>
+    </div>
+  </>
 }
 
 export default DashboardPage;

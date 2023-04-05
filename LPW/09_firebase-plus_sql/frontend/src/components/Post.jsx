@@ -1,4 +1,6 @@
-const Article = (props) => {
+import { Link } from 'react-router-dom';
+
+const Article = ({ post }) => {
   const formatDate = (sqlDate) => {
     const date = new Date(sqlDate);
     const options = { day: 'numeric', month: 'short', year: 'numeric' };
@@ -21,13 +23,15 @@ const Article = (props) => {
     <article className="rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:shadow-sm">
       <div className="rounded-[10px] bg-white p-4 !pt-20 sm:p-6">
         <time dateTime="2022-10-10" className="block text-xs text-gray-500">
-          {formatDate(props.date)}
+          {formatDate(post.created_at)}
         </time>
-        <a href="#">
+        <Link to={`/posts/${post.id}`}>
           <h3 className="mt-0.5 text-lg font-medium text-gray-900">
-            {props.content}
+            {post.title}
           </h3>
-        </a>
+
+          <p>{post.content}</p>
+        </Link>
       </div>
     </article>
   );

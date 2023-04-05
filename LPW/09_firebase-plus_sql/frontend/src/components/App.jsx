@@ -9,6 +9,7 @@ import PrivateRoute from './../routes/PrivateRoutes';
 import LoginPage from './../pages/LoginPage';
 import Dashboard from './../pages/Dashboard';
 import PostsPage from './../pages/PostsPage';
+import PostItemPage from './../pages/PostItemPage';
 
 import NavBar from './NavBar';
 
@@ -26,6 +27,7 @@ function App() {
           </Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/posts" element={<PostsPage />} />
+          <Route path="/post/:id" element={<PostItemPage />} />
         </Routes>
       </Router>
     </AppContextProviders>

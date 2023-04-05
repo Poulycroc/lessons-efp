@@ -19,11 +19,13 @@ const PostsPage = () => {
   }, [])
 
   return <>
-    {isPostsLoading ? 'loading...' : (<ul>
-      {postsList.map(({ content, date }, i) => (<li key={i}>
-        <Post content={content} date={date} />
-      </li>))}
-    </ul>)}
+    <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
+      {isPostsLoading ? 'loading...' : (<ul className='flex-col flex gap-4'>
+        {postsList.map((post, i) => (<li key={i}>
+          <Post post={post} />
+        </li>))}
+      </ul>)}
+    </div>
   </>
 }
 
