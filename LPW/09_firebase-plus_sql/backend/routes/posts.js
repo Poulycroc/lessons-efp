@@ -29,9 +29,28 @@ router.post('/', verifyToken, async (req, res) => {
 // Récupérer tous les posts
 router.get('/', async (req, res) => {
   try {
-    // retrieve all posts from the database
-    const result = await db.promise().query('SELECT * FROM posts');
-    res.status(200).json(result[0]);
+    const page = req.query.page || 1;
+    const limit = req.query.limit || 20; // Define the number of posts per page
+
+    // Calculate the offset based on the current page and the limit
+    const offset = (page - 1) * limit;
+
+    // Retrieve a slice of posts from the database based on the limit and offset
+    const result = await db.promise().query(`SELECT * FROM posts LIMIT ${limit} OFFSET ${offset}`);
+
+    // Retrieve the total number of posts from the database
+    const countResult = await db.promise().query('SELECT COUNT(*) as count FROM posts');
+    const count = countResult[0][0].count;
+
+    // Calculate the total number of pages based on the total number of posts and the limit
+    const totalPages = Math.ceil(count / limit);
+
+    res.status(200).json({
+      results: result[0],
+      page: parseInt(page || 1),
+      limit: parseInt(limit || 20),
+      totalPages,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
@@ -44,6 +63,7 @@ router.get('/:id', async (req, res) => {
     const articleId = req.params.id;
     // retrieve the article with the specified ID from the database
     const result = await db.promise().query('SELECT * FROM posts WHERE id = ?', [articleId]);
+
     if (result[0].length === 0) {
       res.status(404).json({ message: 'Article not found' });
     } else {
